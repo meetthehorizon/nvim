@@ -19,6 +19,7 @@ require('conform').setup {
   },
   -- You can also specify external formatters in here.
   formatters_by_ft = {
+    c = { 'clang-format' },
     lua = { 'stylua' },
     rust = { 'rustfmt', lsp_format = 'fallback' },
     python = { 'ruff_format', 'ruff_organize_imports' },

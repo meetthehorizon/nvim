@@ -51,7 +51,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 ---@type table<string, vim.lsp.Config>
 local servers = {
-  clangd = {},
+  clangd = {
+    cmd = {
+      'clangd',
+      '--background-index',
+      '--clang-tidy',
+    },
+  },
   gopls = {},
   pyright = {
     settings = {
@@ -69,6 +75,7 @@ local servers = {
     filetypes = { 'sh', 'bash' },
   },
   fish_lsp = {},
+  yamlls = {},
   lua_ls = {
     on_init = function(client)
       client.server_capabilities.documentFormattingProvider = false
