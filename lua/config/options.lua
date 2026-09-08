@@ -6,6 +6,7 @@ vim.g.maplocalleader = ' '
 -- Options
 vim.o.breakindent = true
 vim.o.ignorecase = true
+vim.o.tabstop = 2
 vim.o.list = true
 vim.o.mouse = 'a'
 vim.o.number = true
