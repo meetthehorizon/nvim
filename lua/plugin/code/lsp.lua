@@ -49,13 +49,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
+-- All LSP servers are installed with mise (see mise.toml in the repo root)
+-- and reachable on PATH via mise shims. No Mason needed: `mise install` in
+-- this repo provides every server below.
 ---@type table<string, vim.lsp.Config>
 local servers = {
   clangd = {
     cmd = {
       'clangd',
       '--background-index',
-      '--clang-tidy',
     },
   },
   gopls = {},
@@ -108,22 +110,7 @@ local servers = {
 
 vim.pack.add {
   Github 'neovim/nvim-lspconfig',
-  Github 'mason-org/mason.nvim',
-  Github 'mason-org/mason-lspconfig.nvim',
-  Github 'WhoIsSethDaniel/mason-tool-installer.nvim',
 }
-
--- Automatically install LSPs and related tools to stdpath for Neovim
-require('mason').setup {}
-
--- Translates between nvim-lspconfig server names and mason.nvim package names (e.g. lua_ls <-> lua-language-server)
-require('mason-lspconfig').setup {
-  automatic_enable = false, -- Change this to true if you want to automatically enable servers that are installed manually (e.g. via :Mason / :MasonInstall)
-}
-
--- Ensure the servers and tools above are installed
-local ensure_installed = vim.tbl_keys(servers or {})
-require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
 for name, server in pairs(servers) do
   vim.lsp.config(name, server)

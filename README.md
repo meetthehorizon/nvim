@@ -14,29 +14,28 @@ A starting point for Neovim that is:
 
 ### Install Neovim
 
-Kickstart.nvim targets *only* the latest
-['stable'](https://github.com/neovim/neovim/releases/tag/stable) and latest
-['nightly'](https://github.com/neovim/neovim/releases/tag/nightly) of Neovim.
-If you are experiencing issues, please make sure you have at least the latest
-stable version. Most likely, you want to install neovim via a [package
-manager](https://github.com/neovim/neovim/blob/master/INSTALL.md#install-from-package).
-To check your neovim version, run `nvim --version` and make sure it is not
-below the latest
-['stable'](https://github.com/neovim/neovim/releases/tag/stable) version. If
-your chosen install method only gives you an outdated version of neovim, find
-alternative [installation methods below](#alternative-neovim-installation-methods).
+Neovim is installed with [mise](https://mise.jdx.dev) and declared in this
+repo's `mise.toml` (along with every LSP server, formatter, and linter the
+config uses). Make sure mise is installed and activated in your shell, then
+from this directory run:
+
+```sh
+mise install
+```
 
 ### Install External Dependencies
 
-External Requirements:
+External tools (LSP servers, formatters, linters, ripgrep, Node, Go, and Rust
+toolchains) are all managed by mise and declared in `mise.toml` — the `mise
+install` above covers them. Run `mise outdated` to check for newer releases
+and `mise upgrade` to update.
+
+Still required from your system:
+
 - Basic utils: `git`, `make`, `unzip`, C Compiler (`gcc`)
-- [ripgrep](https://github.com/BurntSushi/ripgrep#installation),
-  [fd-find](https://github.com/sharkdp/fd#installation)
-- [tree-sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/crates/cli/README.md#installation)
 - Clipboard tool (xclip/xsel/win32yank or other depending on the platform)
 - A [Nerd Font](https://www.nerdfonts.com/): optional, provides various icons
   - if you have it set `vim.g.have_nerd_font` in `init.lua` to true
-- Emoji fonts (Ubuntu only, and only if you want emoji!) `sudo apt install fonts-noto-color-emoji`
 - Language Setup:
   - If you want to write Typescript, you need `npm`
   - If you want to write Golang, you will need `go`
@@ -274,8 +273,12 @@ sudo dnf install -y gcc make git ripgrep fd-find tree-sitter-cli unzip neovim
 <details><summary>Arch Install Steps</summary>
 
 ```
-sudo pacman -S --noconfirm --needed gcc make git ripgrep fd tree-sitter-cli unzip neovim
+sudo pacman -S --noconfirm --needed gcc make git unzip
 ```
+
+Everything else (neovim itself, ripgrep, LSP servers, formatters, linters) is
+installed by `mise install` from this repo's `mise.toml` — no pacman packages
+needed.
 </details>
 
 ### Alternative neovim installation methods
@@ -332,10 +335,11 @@ globally in the user-space as well:
 [Install mise](https://mise.jdx.dev/getting-started.html), then run:
 
 ```bash
-mise plugins install neovim
-mise use neovim@stable
+mise use -g neovim@latest
 ```
 
+This repo's `mise.toml` already pins a known-good neovim version, so simply
+running `mise install` in this directory is enough.
 </details>
 
 <details><summary>asdf</summary>

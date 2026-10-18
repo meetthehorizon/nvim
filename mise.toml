@@ -1,0 +1,40 @@
+# mise.toml — every external tool this Neovim config needs.
+# Run `mise install` in this directory once after cloning/updating.
+# Versions are pinned so this config is reproducible. Run `mise outdated`
+# to see what has newer releases, `mise upgrade --bump` to update a tool
+# and rewrite its pin.
+
+[tools]
+# The editor itself — pinned so this repo always runs a known-good build.
+neovim = "0.12.6"
+
+# Runtimes needed to install/run the tools below.
+node = "26.12.0" # npm-based LSPs (pyright, ts_ls, bashls, fish_lsp, yamlls, markdownlint)
+go = "1.27.2"    # builds gopls, goimports, gofumpt from source
+rust = "1.99.1"  # rustfmt
+
+# --- LSP servers (configured in lua/plugin/code/lsp.lua) ---
+"github:clangd/clangd" = "23.1.0"                    # C/C++
+"go:golang.org/x/tools/gopls" = "0.24.0"             # Go
+"npm:pyright" = "1.1.414"                            # Python
+"npm:typescript-language-server" = "6.0.2"           # TypeScript/JavaScript
+"npm:bash-language-server" = "5.8.1"                 # Bash
+"npm:fish-lsp" = { version = "1.1.5", allow_low_downloads = true } # Fish (official npm dist, low download count)
+"npm:yaml-language-server" = "2.0.0"                 # YAML
+"lua-language-server" = "3.19.2"                     # Lua
+
+# --- Formatters (configured in lua/plugin/code/conform.lua) ---
+"clang-format" = "23.1.3"                              # C
+"stylua" = "2.6.0"                                     # Lua
+"ruff" = "0.17.1"                                      # Python
+"go:golang.org/x/tools/cmd/goimports" = "0.52.0"       # Go
+"gofumpt" = "0.12.0"                                   # Go
+"shfmt" = "3.14.1"                                     # Shell
+
+# --- Linters (configured in lua/plugin/code/lint.lua) ---
+"golangci-lint" = "2.15.0"      # Go
+"shellcheck" = "0.11.0"         # Shell
+"markdownlint-cli2" = "0.23.3"  # Markdown
+
+# --- Search (telescope live_grep) ---
+"rg" = "15.2.0"

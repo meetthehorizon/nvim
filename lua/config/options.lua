@@ -1,3 +1,9 @@
+-- Make mise-managed tools (LSP servers, formatters, linters) available even
+-- when nvim is launched outside a shell with mise activated (e.g. from a
+-- desktop entry or GUI). All tools are declared in mise.toml at the repo root.
+local sep = vim.fn.has 'win32' == 1 and ';' or ':'
+vim.env.PATH = table.concat({ vim.fn.expand '~/.local/share/mise/shims', vim.env.PATH }, sep)
+
 -- Global Options
 vim.g.have_nerd_font = true
 vim.g.mapleader = ' '
