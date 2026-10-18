@@ -1,2 +1,2 @@
-vim.pack.add { 'L3MON4D3/LuaSnip' }
+vim.pack.add { Github 'L3MON4D3/LuaSnip' }
 require('luasnip').setup {}

@@ -1,3 +1,4 @@
+vim.pack.add { { src = Github 'saghen/blink.lib' } }
 vim.pack.add { { src = Github 'saghen/blink.cmp' } }
 require('blink.cmp').setup {
   keymap = {
