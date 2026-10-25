@@ -11,6 +11,8 @@ require 'plugin.pack'
 
 -- 3. UI & Colorscheme
 require 'plugin.ui.color'
+require 'plugin.ui.noice'
+require 'plugin.ui.toggleterm'
 require 'plugin.ui.which-key'
 
 -- 4. Editor Plugins
