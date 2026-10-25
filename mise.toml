@@ -30,6 +30,7 @@ rust = "1.99.1"  # rustfmt
 "go:golang.org/x/tools/cmd/goimports" = "0.52.0"       # Go
 "gofumpt" = "0.12.0"                                   # Go
 "shfmt" = "3.14.1"                                     # Shell
+"taplo" = "0.10.0"                                     # TOML
 
 # --- Linters (configured in lua/plugin/code/lint.lua) ---
 "golangci-lint" = "2.15.0"      # Go

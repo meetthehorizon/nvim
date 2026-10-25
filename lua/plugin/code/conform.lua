@@ -7,6 +7,7 @@ require('conform').setup {
       lua = true,
       python = true,
       go = true,
+      toml = true,
     }
     if enabled_filetypes[vim.bo[bufnr].filetype] then
       return { timeout_ms = 500 }
@@ -26,6 +27,7 @@ require('conform').setup {
     go = { 'goimports', 'gofumpt' },
     sh = { 'shfmt' },
     bash = { 'shfmt' },
+    toml = { 'taplo' },
   },
 }
 
